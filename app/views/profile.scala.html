@@ -22,17 +22,7 @@
 				    <td align="left"> {user.joinDate}
 				    </td>
 				  </tr>
-				</table>
-				<h4> Polls </h4>
-				<table>
-	{Poll.getByCreator(user.id).map(
-		         	(poll: db.Poll) => 
-			<tr><td>
-				<p><b><a href={"/vote/" + poll.id}>{poll.title}
-				</a></b> on {poll.upload}
-				</p>
-				</td></tr>)}
-	</table>
+				
 			}
 		}
 	}
