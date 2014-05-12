@@ -1,0 +1,40 @@
+@(uid: Long)(implicit req: Request[_])
+
+@import play.api.mvc._
+@import db._
+@import scala.xml._
+
+@main("View Profile") {
+	@{
+		val userMaybe = Users.getById(uid)
+		userMaybe match {
+			case None => {<font color="red">There is no user!</font>}
+			case Some(user) => {
+				<h3> {user.username} </h3>
+				<table border="2">
+				  <tr>
+				    <td align="right"> Actual name </td>
+				    <td align="left"> {user.first + " " + user.last}
+				    </td>
+				  </tr>
+				  <tr>
+				    <td align="right"> Joined </td>
+				    <td align="left"> {user.joinDate}
+				    </td>
+				  </tr>
+				</table>
+				<h4> Polls </h4>
+				<table>
+	{Poll.getByCreator(user.id).map(
+		         	(poll: db.Poll) => 
+			<tr><td>
+				<p><b><a href={"/vote/" + poll.id}>{poll.title}
+				</a></b> on {poll.upload}
+				</p>
+				</td></tr>)}
+	</table>
+			}
+		}
+	}
+	
+}

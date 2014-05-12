@@ -1,0 +1,25 @@
+@(message: String)(implicit req: Request[_])
+
+@import play.api.mvc._
+
+@main("Polls 'R' Us") {
+
+	<h3>Survey Says...This is your Poll application.</h3>
+	<br/>
+    @message
+    <br/>
+    
+    @req.session.get("user") match { 
+      case Some(_) => {
+        <form method="post" action="/logout">
+          <button type="submit" class="btn">Logout</button>
+        </form>
+      } 
+      case None => { 
+        <form method="get" action="/login">
+          <button type="submit" class="btn">Login</button>
+        </form>
+      }
+    }
+	
+}

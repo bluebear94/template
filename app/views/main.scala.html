@@ -1,0 +1,20 @@
+@(title: String)(content: Html)
+@import play.api.mvc._
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>@title - Terracake</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+  </head>
+  <body>    
+    <div class="container">
+      <h1><a href="/">Terracake</a></h1>
+      <h2>@title</h2>
+      @content
+    </div>
+  </body>
+</html>
